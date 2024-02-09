@@ -42,7 +42,7 @@ namespace ChatLab
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine($"Error: {ex.Message}")  ;
             }
 
             
