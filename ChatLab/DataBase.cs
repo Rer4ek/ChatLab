@@ -31,19 +31,7 @@ namespace ChatLab
             NpgsqlCommand commandSQL = new NpgsqlCommand("SELECT * FROM users", npgSqlConnection);
             //await npgSqlConnection.OpenAsync();
             await commandSQL.ExecuteNonQueryAsync();
-            try
-            {
-                var reader = await commandSQL.ExecuteReaderAsync();
-                while (await reader.ReadAsync())
-                {
-                    users[0].Add(reader.GetString(0));
-                    users[1].Add(reader.GetInt32(1).ToString());
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}")  ;
-            }
+            
 
             
         }
