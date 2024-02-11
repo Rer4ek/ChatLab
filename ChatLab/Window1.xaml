@@ -5,10 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChatLab"
         mc:Ignorable="d"
-        Title="SignWindow" Height="221" Width="187">
-    <Grid Margin="0,0,0,-6">
-        <Button Content="Войти" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" Height="48" Width="120" Click="Button_Click"/>
-        <TextBox HorizontalAlignment="Left" Margin="10,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontFamily="Comic Sans MS"/>
-        <Label Content="Введите Имя" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
+        Title="SignWindow" Height="449" Width="300">
+    <Grid Margin="0,0,0,-16">
+        <Button x:Name="SigInButton" Content="Войти" HorizontalAlignment="Left" Margin="10,225,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" Height="48" Width="120" Click="Button_Click"/>
+        <TextBox x:Name="SignText" HorizontalAlignment="Left" Margin="10,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontFamily="Comic Sans MS" TextChanged="TextBox_TextChanged"/>
+        <Label Content="Введите Имя" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
+        <Label Content="Вход" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="20"/>
+        <Label Content="Введите пароль" HorizontalAlignment="Left" Margin="10,149,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
+        <TextBox x:Name="SignPasswordText" HorizontalAlignment="Left" Margin="10,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontFamily="Comic Sans MS"/>
+        <Label Content="Ещё не создали профиль?" HorizontalAlignment="Center" Margin="0,354,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
+        <Button x:Name="GoToRegistrationButton" Content="Регистрация" HorizontalAlignment="Center" Margin="0,381,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" Click="GoToRegistrationButton_Click"/>
     </Grid>
 </Window>

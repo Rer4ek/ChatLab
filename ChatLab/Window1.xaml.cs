@@ -24,9 +24,7 @@ namespace ChatLab
         public Window1()
         {
             InitializeComponent();
-            DataBase dataBase = new DataBase();
-            dataBase.DBConnection();
-            dataBase.DBOutputUsersCommand();
+            //dataBase.DBInputCommand($"INSERT INTO users (name, id) VALUES ('{SignText.Text}', ROW_NUMBER() over())");
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -35,7 +33,17 @@ namespace ChatLab
             Close();
         }
 
-        
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void GoToRegistrationButton_Click(object sender, RoutedEventArgs e)
+        {
+            Window2 window2 = new Window2();
+            window2.Show();
+            Close();
+        }
     }
 
     
