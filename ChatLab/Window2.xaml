@@ -8,10 +8,10 @@
         Title="Window2" Height="450" Width="300">
     <Grid HorizontalAlignment="Center" Width="300" Margin="0,0,0,-16">
         <Label Content="Регистрация" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="20"/>
-        <TextBox x:Name="RegistrationName" HorizontalAlignment="Left" Margin="10,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontFamily="Comic Sans MS"/>
+        <TextBox x:Name="RegistrationName" HorizontalAlignment="Left" Margin="10,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontFamily="Comic Sans MS" TextChanged="RegistrationName_TextChanged" KeyUp="RegistrationName_KeyUp"/>
         <Label Content="Имя" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
         <Label Content="Придумайте пароль" HorizontalAlignment="Left" Margin="10,136,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
-        <TextBox x:Name="RegistrationPassword" HorizontalAlignment="Left" Margin="10,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontFamily="Comic Sans MS"/>
+        <TextBox x:Name="RegistrationPassword" HorizontalAlignment="Left" Margin="10,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontFamily="Comic Sans MS" KeyUp="RegistrationPassword_KeyUp"/>
         <Button x:Name="RegisrtationButton" Content="Зарегистрироваться" HorizontalAlignment="Left" Margin="10,225,0,0" VerticalAlignment="Top" Height="31" Width="129" FontFamily="Comic Sans MS" Click="RegisrtationButton_Click"/>
         <Label Content="Уже есть профиль?" HorizontalAlignment="Center" Margin="0,356,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
         <Button x:Name="RegistrationLoginButton" Content="Войти" HorizontalAlignment="Center" Margin="0,388,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" Click="RegistrationLoginButton_Click"/>

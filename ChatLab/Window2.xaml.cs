@@ -54,10 +54,37 @@ namespace ChatLab
                 }
                 dataBase.DBInputCommand($"INSERT INTO users (name, password) VALUES " +
                     $"('{RegistrationName.Text}', '{RegistrationPassword.Text}') ON CONFLICT (name) DO NOTHING;");
+                MainWindow mainWindow = new MainWindow();
+                //PostOffice.Package = RegistrationName.Text;
+                mainWindow.Username.Text = RegistrationName.Text;
+                mainWindow.Show();
+                Close();
             }
             else
             {
                 MessageBox.Show("Поля не должны быть путсыми, а так же:\nДлина имени - не менее 2 символов и не более 15\nДлина пароля - не менее 6 символов и не более 20");
+            }
+        }
+
+
+        private void RegistrationName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void RegistrationName_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                RegisrtationButton_Click(sender, e);
+            }
+        }
+
+        private void RegistrationPassword_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                RegisrtationButton_Click(sender, e);
             }
         }
     }

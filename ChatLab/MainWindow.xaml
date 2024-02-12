@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="ChatHistory" HorizontalAlignment="Left" Margin="266,23,0,0" TextWrapping="Wrap" Text="[История чата]" VerticalAlignment="Top" Width="499" Height="224" TextChanged="ChatHistory_TextChanged" IsReadOnly="True" VerticalScrollBarVisibility="Visible"/>
-        <Button x:Name="SendMessage" Content="Отправить сообщение" Margin="266,300,400,80" Click="SendMessage_Click"/>
-        <TextBox x:Name="Username" Text="Пишите имя" Margin="73,23,0,0" Background="#FFFFD8D8" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="114" Height="37"/>
-        <TextBox x:Name="Message" HorizontalAlignment="Left" Margin="453,289,0,0" TextWrapping="Wrap" Text="Пишите сообщение" VerticalAlignment="Top" Width="312" Height="76" KeyUp="Message_KeyUp"/>
+        <TextBox x:Name="ChatHistory" HorizontalAlignment="Left" Margin="266,23,0,0" TextWrapping="Wrap" Text="[История чата]" VerticalAlignment="Top" Width="499" Height="224" TextChanged="ChatHistory_TextChanged" IsReadOnly="True" VerticalScrollBarVisibility="Visible" FontFamily="Comic Sans MS" FontSize="13"/>
+        <Button x:Name="SendMessage" Content="Отправить сообщение" Margin="266,300,400,80" Click="SendMessage_Click" FontFamily="Comic Sans MS"/>
+        <TextBox x:Name="Username" Text="Пишите имя" Margin="73,23,0,0" Background="#FFFFD8D8" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="114" Height="37" IsEnabled="False" FontSize="15" FontFamily="Comic Sans MS"/>
+        <TextBox x:Name="Message" HorizontalAlignment="Left" Margin="453,289,0,0" TextWrapping="Wrap" Text="Пишите сообщение" VerticalAlignment="Top" Width="312" Height="76" KeyUp="Message_KeyUp" GotFocus="Message_GotFocus" FontFamily="Comic Sans MS"/>
     </Grid>
 </Window>

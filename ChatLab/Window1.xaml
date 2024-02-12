@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:ChatLab"
         mc:Ignorable="d"
         Title="SignWindow" Height="449" Width="300">
-    <Grid Margin="0,0,0,-16">
+    <Grid Margin="0,0,0,-16" KeyUp="Grid_KeyUp">
         <Button x:Name="SigInButton" Content="Войти" HorizontalAlignment="Left" Margin="10,225,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" Height="48" Width="120" Click="Button_Click"/>
-        <TextBox x:Name="SignText" HorizontalAlignment="Left" Margin="10,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontFamily="Comic Sans MS" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name="SignText" HorizontalAlignment="Left" Margin="10,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontFamily="Comic Sans MS" TextChanged="TextBox_TextChanged" KeyUp="SignText_KeyUp"/>
         <Label Content="Введите Имя" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
         <Label Content="Вход" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="20"/>
         <Label Content="Введите пароль" HorizontalAlignment="Left" Margin="10,149,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
-        <TextBox x:Name="SignPasswordText" HorizontalAlignment="Left" Margin="10,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontFamily="Comic Sans MS"/>
+        <TextBox x:Name="SignPasswordText" HorizontalAlignment="Left" Margin="10,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontFamily="Comic Sans MS" KeyUp="SignPasswordText_KeyUp"/>
         <Label Content="Ещё не создали профиль?" HorizontalAlignment="Center" Margin="0,354,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
         <Button x:Name="GoToRegistrationButton" Content="Регистрация" HorizontalAlignment="Center" Margin="0,381,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" Click="GoToRegistrationButton_Click"/>
     </Grid>

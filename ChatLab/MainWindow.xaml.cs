@@ -19,6 +19,7 @@ namespace ChatLab
 {
     public partial class MainWindow : Window
     {
+        Window1 window1 = new Window1();
         string historyPath = "history.txt";
 
         void GoToEndBox(TextBox box)
@@ -48,7 +49,7 @@ namespace ChatLab
         {
             InitializeComponent();
             PrintHistory();
-
+            //Username.Text = PostOffice.Package;
         }
 
         private void ChatHistory_TextChanged(object sender, TextChangedEventArgs e)
@@ -72,6 +73,7 @@ namespace ChatLab
 
             ChatHistory.Text +=  $"{Username.Text} >> {Message.Text}    [{DateTime.Now}]\n";
             Message.Text = string.Empty;
+            GoToEndBox(ChatHistory);
         }
 
         private void Message_KeyUp(object sender, KeyEventArgs e)
@@ -79,7 +81,13 @@ namespace ChatLab
             if (e.Key == Key.Enter)
             {
                 SendMessage_Click(sender, e);
+                GoToEndBox(ChatHistory);
             }
+        }
+
+        private void Message_GotFocus(object sender, RoutedEventArgs e)
+        {
+            Message.Text = string.Empty;
         }
     }
 }
