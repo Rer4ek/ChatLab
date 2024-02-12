@@ -45,6 +45,7 @@ namespace ChatLab
                 {
                     users[0].Add(reader.GetString(0));
                     users[1].Add(reader.GetString(1));
+
                 }
             }
             catch (Exception ex)
@@ -59,6 +60,12 @@ namespace ChatLab
         {
             DBConnection();
             List<List<string>> messages = new List<List<string>>();
+            List<string> name = new List<string> { "AdminName" };
+            List<string> message = new List<string> { "AdminMessage" };
+            List<string> date = new List<string> { "AdminDate" };
+            messages.Add(name);
+            messages.Add(message);
+            messages.Add(date);
             NpgsqlCommand commandSQL = new NpgsqlCommand("SELECT * FROM messages;", npgSqlConnection);
             await commandSQL.ExecuteNonQueryAsync();
             try
@@ -67,7 +74,8 @@ namespace ChatLab
                 while (await reader.ReadAsync())
                 {
                     messages[0].Add(reader.GetString(0));
-                    messages[1].Add(reader.GetInt32(1).ToString());
+                    messages[1].Add(reader.GetString(1));
+                    messages[2].Add(reader.GetString(2));
                 }
             }
             catch (Exception ex)
