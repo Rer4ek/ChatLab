@@ -15,17 +15,26 @@ namespace ChatLab
 
         public void DBConnection()
         {
-            npgSqlConnection.Open();
-            Console.WriteLine("Succesful connection!");
+            try
+            {
+                npgSqlConnection.Open();
+                Console.WriteLine("Succesful connection!");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
 
-        public async void DBInputCommand(string command)
+        public void DBInputCommand(string command)
         {
             DBConnection();
-            NpgsqlCommand commandSQL = new NpgsqlCommand(command, npgSqlConnection);
-            await commandSQL.ExecuteNonQueryAsync();
+            NpgsqlCommand  commandSQL = new NpgsqlCommand(command, npgSqlConnection);
+            commandSQL.ExecuteNonQuery();
             npgSqlConnection.Close();
         }
+
+        public void DBClose() { npgSqlConnection.Close(); }
 
         public async Task<List<List<string>>> DBOutputUsersCommand()
         {
@@ -63,9 +72,11 @@ namespace ChatLab
             List<string> name = new List<string> { "AdminName" };
             List<string> message = new List<string> { "AdminMessage" };
             List<string> date = new List<string> { "AdminDate" };
+            List<string> id = new List<string> { "AdminId" };
             messages.Add(name);
             messages.Add(message);
             messages.Add(date);
+            messages.Add(id);
             NpgsqlCommand commandSQL = new NpgsqlCommand("SELECT * FROM messages;", npgSqlConnection);
             await commandSQL.ExecuteNonQueryAsync();
             try
@@ -76,6 +87,31 @@ namespace ChatLab
                     messages[0].Add(reader.GetString(0));
                     messages[1].Add(reader.GetString(1));
                     messages[2].Add(reader.GetString(2));
+                    messages[3].Add(reader.GetInt32(3).ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            npgSqlConnection.Close();
+            return messages;
+        }
+
+        public async Task<List<List<string>>> DBOutputMessagesID()
+        {
+            DBConnection();
+            List<List<string>> messages = new List<List<string>>();
+            List<string> id = new List<string> { "AdminId" };
+            messages.Add(id);
+            NpgsqlCommand commandSQL = new NpgsqlCommand("SELECT * FROM messageID;", npgSqlConnection);
+            await commandSQL.ExecuteNonQueryAsync();
+            try
+            {
+                var reader = await commandSQL.ExecuteReaderAsync();
+                while (await reader.ReadAsync())
+                {
+                    messages[0].Add(reader.GetInt32(0).ToString());
                 }
             }
             catch (Exception ex)
