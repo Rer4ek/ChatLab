@@ -13,7 +13,7 @@
                 <GradientStop Color="#FFFFE7E7" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Button x:Name="SendMessage" Content="Отправить сообщение" Margin="266,347,400,33" Click="SendMessage_Click" FontFamily="Comic Sans MS"/>
+        <Button x:Name="SendMessage" Content="Отправить сообщение" Margin="266,347,400,33" Click="SendMessage_Click" FontFamily="Comic Sans MS" RenderTransformOrigin="0.5,1"/>
         <TextBox x:Name="Username" Text="Пишите имя" Margin="73,23,0,0" Background="#FFCECECE" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="114" Height="37" IsEnabled="False" FontSize="15" FontFamily="Comic Sans MS"/>
         <TextBox x:Name="Message" HorizontalAlignment="Left" Margin="453,336,0,0" TextWrapping="Wrap" Text="Пишите сообщение" VerticalAlignment="Top" Width="312" Height="76" KeyUp="Message_KeyUp" GotFocus="Message_GotFocus" FontFamily="Comic Sans MS"/>
         <ListBox x:Name="ListBoxMesagges" Margin="266,23,35,113" IsSynchronizedWithCurrentItem="True" Background="White" GotFocus="ListBoxMesagges_GotFocus" FocusableChanged="ListBoxMesagges_FocusableChanged" MouseLeftButtonUp="ListBoxMesagges_MouseLeftButtonUp">

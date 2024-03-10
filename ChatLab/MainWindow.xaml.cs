@@ -17,14 +17,30 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
+using System.Windows.Threading;
 
 namespace ChatLab
 {
+
     public partial class MainWindow : Window
     {
         DataBase dataBase = new DataBase();
         Window1 window1 = new Window1();
         bool delete = false;
+
+        private void Window_Loaded()
+        {
+            System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
+
+            timer.Tick += new EventHandler(timerTick);
+            timer.Interval = new TimeSpan(0, 0, 5);
+            timer.Start();
+        }
+
+        private void timerTick(object sender, EventArgs e)
+        {
+            PrintHistory();
+        }
 
         void GoToEndBox(System.Windows.Controls.ListBox ListBoxMesagges)
         {
@@ -47,6 +63,7 @@ namespace ChatLab
         public MainWindow()
         {
             InitializeComponent();
+            Window_Loaded();
             PrintHistory();
             //Username.Text = PostOffice.Package;
         }
