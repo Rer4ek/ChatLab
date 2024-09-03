@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Documents;
 using Npgsql;
 
 namespace ChatLab
 {
     public class DataBase
     {
-        static string connectionString = "Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=12345;";
+        static string connectionString = "Host=localhost;Port=yourPort;Database=yourDatabaseName;Username=yourUsername;Password=yourPassword;";
         NpgsqlConnection npgSqlConnection = new NpgsqlConnection(connectionString);
 
         public void DBConnection()
@@ -26,6 +23,7 @@ namespace ChatLab
             }
         }
 
+        // Безвозвратная команда
         public void DBInputCommand(string command)
         {
             DBConnection();
@@ -36,6 +34,7 @@ namespace ChatLab
 
         public void DBClose() { npgSqlConnection.Close(); }
 
+        // Получение пользовательских данных
         public async Task<List<List<string>>> DBOutputUsersCommand()
         {
             DBConnection();
@@ -65,6 +64,7 @@ namespace ChatLab
             return users;
         }
 
+        // Получение данных о сообщениях
         public async Task<List<List<string>>> DBOutputMessagesCommand()
         {
             DBConnection();
@@ -98,6 +98,7 @@ namespace ChatLab
             return messages;
         }
 
+        // Получение ID сообщений
         public async Task<List<List<string>>> DBOutputMessagesID()
         {
             DBConnection();

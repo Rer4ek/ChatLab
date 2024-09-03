@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace ChatLab
 {
@@ -48,24 +40,23 @@ namespace ChatLab
                     }
                     else if (users[0][i] == RegistrationName.Text)
                     {
-                        MessageBox.Show("Профиль с таким именем уже есть!");
+                       MessageBox.Show("Профиль с таким именем уже есть!");
                         return;
                     }
                 }
                 dataBase.DBInputCommand($"INSERT INTO users (name, password) VALUES " +
                     $"('{RegistrationName.Text}', '{RegistrationPassword.Text}') ON CONFLICT (name) DO NOTHING;");
                 MainWindow mainWindow = new MainWindow();
-                //PostOffice.Package = RegistrationName.Text;
                 mainWindow.Username.Text = RegistrationName.Text;
                 mainWindow.Show();
                 Close();
             }
             else
             {
-                MessageBox.Show("Поля не должны быть путсыми, а так же:\nДлина имени - не менее 2 символов и не более 15\nДлина пароля - не менее 6 символов и не более 20");
+                MessageBox.Show("Поля не должны быть путсыми, а так же:\nДлина имени - не менее 2 символов и не более 15\n" +
+                    "Длина пароля - не менее 6 символов и не более 20");
             }
         }
-
 
         private void RegistrationName_TextChanged(object sender, TextChangedEventArgs e)
         {

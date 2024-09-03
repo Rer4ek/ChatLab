@@ -1,23 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
-using System.Windows.Threading;
+using MessageBox = System.Windows.MessageBox;
 
 namespace ChatLab
 {
@@ -65,14 +53,7 @@ namespace ChatLab
             InitializeComponent();
             Window_Loaded();
             PrintHistory();
-            //Username.Text = PostOffice.Package;
         }
-
-        private void ChatHistory_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
 
         private async void SendMessage_Click(object sender, RoutedEventArgs e)
         {
@@ -84,7 +65,7 @@ namespace ChatLab
                 messagesID = await dataBase.DBOutputMessagesID();
                 dataBase.DBInputCommand($"INSERT INTO messages (name, textmessages, date, id) VALUES ('{Username.Text}', '{Message.Text}', '[{DateTime.Now}]', '{(messagesID[0].Count()).ToString()}');");
                 dataBase.DBInputCommand($"INSERT INTO messageID (id) VALUES ('{messagesID[0].Count()}');");
-                CreateMessageBox(Username.Text, Message.Text, $"[{DateTime.Now}]", $"idx{(messagesID[0].Count()).ToString()}", ListBoxMesagges.Items);
+                CreateMessageBox(Username.Text, Message.Text, $"[{DateTime.Now}]", $"idx{Message.Text.Length.ToString()}", ListBoxMesagges.Items);
                 Message.Text = string.Empty;
                 GoToEndBox(ListBoxMesagges);
             }
@@ -103,10 +84,7 @@ namespace ChatLab
         {
             System.Windows.Controls.TextBox messageBox = new System.Windows.Controls.TextBox();
             messageBox.Width = 400;
-            //messageBox.Height = 80;
-            //messageBox.TextWrapping = true;
             messageBox.TextWrapping = TextWrapping.Wrap;
-            //messageBox.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
             messageBox.AcceptsReturn = true;
             messageBox.IsReadOnly = true;
             messageBox.FontFamily = new FontFamily("Comic Sans MS");
@@ -121,26 +99,11 @@ namespace ChatLab
             ListBoxMesagges.Items.Refresh();
         }
 
-        private async void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DeleteMessageButton_Click(object sender, RoutedEventArgs e)
         {
-           
-        }
-
-        private async void DeleteMessageButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (DeleteMessageButton.Content.ToString() == "Удалить сообщение") DeleteMessageButton.Content = "Перестать удалять";
-            else if (DeleteMessageButton.Content.ToString() == "Перестать удалять") DeleteMessageButton.Content = "Удалить сообщение";
+            if (DeleteMessageButton.Content.ToString() == "Удалить сообщение") DeleteMessageButton.Content = "Выберите сообщение";
+            else if (DeleteMessageButton.Content.ToString() == "Выберите сообщение") DeleteMessageButton.Content = "Удалить сообщение";
             delete = !delete;
-        }
-
-
-        private async void ListBoxMesagges_GotFocus(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private async void ListBoxMesagges_FocusableChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
         }
 
         private async void ListBoxMesagges_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -151,26 +114,31 @@ namespace ChatLab
                 messages = await dataBase.DBOutputMessagesCommand();
                 for (int i = 1; i < messages[0].Count; i++)
                 {
-                    Console.WriteLine($"FIRST - {ListBoxMesagges.SelectedIndex}");
                     for (int j = 0; j < ListBoxMesagges.Items.Count; j++)
-                    //{
-                    //    Console.WriteLine($"{ListBoxMesagges.Items[j]} {j}");
-                    //}
-                    //Console.WriteLine($"SECOND - System.Windows.Controls.TextBox: Пользователь {messages[0][i]}:\n{messages[1][i]}\n\n{messages[2][i]}");
-                    //if (messages[0][i] == Username.Text) Console.WriteLine("USERNAME CHECK");
-                    //if ($"System.Windows.Controls.TextBox: Пользователь {messages[0][i]}:\n{messages[1][i]}\n\n{messages[2][i]}" == ListBoxMesagges.Items[ListBoxMesagges.SelectedIndex].ToString()) Console.WriteLine("MESSAGE CHECK");
                     if (messages[0][i] == Username.Text && $"System.Windows.Controls.TextBox: Пользователь {messages[0][i]}:\n{messages[1][i]}\n\n{messages[2][i]}" == ListBoxMesagges.Items[ListBoxMesagges.SelectedIndex].ToString())
                     {
-                        Console.WriteLine("DELETE ELEMENT AFTER");
-                        object selectedItem = ListBoxMesagges.Items[ListBoxMesagges.SelectedIndex];
-                        System.Windows.Controls.TextBox textBox = selectedItem as System.Windows.Controls.TextBox;
-                        string[] name = textBox.Name.Split('x');
-                        Console.WriteLine(name[1]);
-                        dataBase.DBInputCommand($"DELETE FROM messages WHERE id = '{name[1]}';");
-                        Console.WriteLine("Second");
-                        ListBoxMesagges.Items.RemoveAt(ListBoxMesagges.SelectedIndex);
-                        ListBoxMesagges.Items.Refresh();
-                        return;
+                            string messageBoxText = "Вы хотите удалить сообщение?";
+                            string caption = "Этаче";
+                            MessageBoxButton button = MessageBoxButton.YesNo;
+                            MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button);
+                            if (result == MessageBoxResult.Yes)
+                            {
+                                // Выполните действие для кнопки "Да"
+                                object selectedItem = ListBoxMesagges.Items[ListBoxMesagges.SelectedIndex];
+                                System.Windows.Controls.TextBox textBox = selectedItem as System.Windows.Controls.TextBox;
+                                string[] name = textBox.Name.Split('x');
+                                dataBase.DBInputCommand($"DELETE FROM messages WHERE id = '{name[1]}';");
+                                ListBoxMesagges.Items.RemoveAt(ListBoxMesagges.SelectedIndex);
+                            }
+                            if(result == MessageBoxResult.No)
+                            {
+                                continue;
+                            }
+                            // Другие варианты
+                            ListBoxMesagges.Items.Refresh();
+                            DeleteMessageButton.Content = "Удалить сообщение";
+                            delete = !delete;
+                            return;
                     }
                 }
                 ListBoxMesagges.Items.Refresh();

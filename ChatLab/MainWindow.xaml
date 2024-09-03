@@ -9,16 +9,33 @@
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FFFFC694"/>
+                <GradientStop Color="#FFFFA454"/>
                 <GradientStop Color="#FFFFE7E7" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Button x:Name="SendMessage" Content="Отправить сообщение" Margin="266,347,400,33" Click="SendMessage_Click" FontFamily="Comic Sans MS" RenderTransformOrigin="0.5,1"/>
-        <TextBox x:Name="Username" Text="Пишите имя" Margin="73,23,0,0" Background="#FFCECECE" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="114" Height="37" IsEnabled="False" FontSize="15" FontFamily="Comic Sans MS"/>
-        <TextBox x:Name="Message" HorizontalAlignment="Left" Margin="453,336,0,0" TextWrapping="Wrap" Text="Пишите сообщение" VerticalAlignment="Top" Width="312" Height="76" KeyUp="Message_KeyUp" GotFocus="Message_GotFocus" FontFamily="Comic Sans MS"/>
-        <ListBox x:Name="ListBoxMesagges" Margin="266,23,35,113" IsSynchronizedWithCurrentItem="True" Background="White" GotFocus="ListBoxMesagges_GotFocus" FocusableChanged="ListBoxMesagges_FocusableChanged" MouseLeftButtonUp="ListBoxMesagges_MouseLeftButtonUp">
-            <TextBox Width="482" Background="#FFC3FF80"/>
+        <Button x:Name="SendMessage" Content="Отправить" Margin="631,347,35,28" Click="SendMessage_Click" FontFamily="Comic Sans MS" RenderTransformOrigin="0.5,1" BorderBrush="{x:Null}">
+            <Button.Background>
+                <ImageBrush ImageSource="/tap2.jpg"/>
+            </Button.Background>
+        </Button>
+        <TextBox x:Name="Username" Text="Пишите имя" Margin="73,177,0,0" Background="#FFCECECE" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="114" Height="26" FontSize="15" FontFamily="Comic Sans MS" BorderBrush="White" IsEnabled="False"/>
+        <ListBox x:Name="ListBoxMesagges" Margin="253,23,35,113" IsSynchronizedWithCurrentItem="True" Background="White" MouseLeftButtonUp="ListBoxMesagges_MouseLeftButtonUp" RenderTransformOrigin="1,0">
+            <TextBox Width="482" BorderBrush="{x:Null}" Text="Чат мессенджер" TextAlignment="Center" IsEnabled="False">
+                <TextBox.Background>
+                    <ImageBrush ImageSource="/main.jpg"/>
+                </TextBox.Background>
+            </TextBox>
         </ListBox>
-        <Button x:Name="DeleteMessageButton" Content="Удалить сообщение" HorizontalAlignment="Left" Margin="73,347,0,0" VerticalAlignment="Top" Height="54" Width="126" FontFamily="Comic Sans MS" Background="#FFFFBBBB" Click="DeleteMessageButton_Click"/>
+        <TextBox x:Name="Message" HorizontalAlignment="Left" Margin="253,297,0,0" TextWrapping="Wrap" Text="Пишите сообщение" VerticalAlignment="Top" Width="490" Height="28" KeyUp="Message_KeyUp" GotFocus="Message_GotFocus" FontFamily="Comic Sans MS" RenderTransformOrigin="0.5,1"/>
+        <Button x:Name="DeleteMessageButton" Content="Удалить сообщение" HorizontalAlignment="Left" Margin="253,347,0,0" VerticalAlignment="Top" Height="35" Width="126" FontFamily="Comic Sans MS" Click="DeleteMessageButton_Click" RenderTransformOrigin="0.5,1" BorderBrush="{x:Null}">
+            <Button.Background>
+                <ImageBrush ImageSource="/tap1.jpg"/>
+            </Button.Background>
+        </Button>
+        <TextBox x:Name="Username_Copy" Margin="73,52,0,0" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="114" Height="120" IsEnabled="False" FontSize="15" FontFamily="Comic Sans MS" BorderBrush="{x:Null}">
+            <TextBox.Background>
+                <ImageBrush TileMode="None" ImageSource="/profile.jpg"/>
+            </TextBox.Background>
+        </TextBox>
     </Grid>
 </Window>
